@@ -23,16 +23,16 @@ export class AuthService {
     }
   }
 
-  setToken(t: string) {
+  private setToken(t: string) {
     window.localStorage.setItem(environment.tokenKey, t)
   }
 
-  getToken() {
-   return  window.localStorage.getItem(environment.tokenKey)
+  private getToken() {
+    return window.localStorage.getItem(environment.tokenKey)
   }
 
-  isLogged(): boolean {
-    return this.getToken() != null;
+   isLogged(): Observable<boolean> {
+    return of(this.getToken() != null);
   }
 
 }
