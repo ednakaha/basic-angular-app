@@ -33,10 +33,6 @@ export class AuthService {
     window.localStorage.setItem(environment.tokenKey, t)
   }
 
-  private getToken() {
-    return window.localStorage.getItem(environment.tokenKey)
-  }
-
   logOut() {
     this._isLogged.next(false);
     this.deleteToken();
@@ -48,7 +44,7 @@ export class AuthService {
 
   isLogged(): Observable<boolean> {
     return this._isLogged;
-    // return of(this.getToken() != null);
+
   }
 
 }
