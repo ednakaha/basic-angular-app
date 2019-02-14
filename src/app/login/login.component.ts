@@ -20,10 +20,10 @@ export class LoginComponent implements OnInit {
   login(emailHtml, passwordHtml) {
     this.autoService.Login(emailHtml.value, passwordHtml.value)
       .subscribe((successRes) => {
-        console.log(successRes);
+     //   console.log(successRes);
         this.router.navigate(['member']);
       }, (errorRes) => {
-        console.log(errorRes);
+       // console.log(errorRes);
         emailHtml.value = passwordHtml.value = '';
       })
 

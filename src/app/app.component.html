@@ -1,12 +1,10 @@
-
-
 <header>
     <nav>
         <ul>
             <li><a herf='#' [routerLink]="['']">Home</a> </li>
-            <li><a herf='#' [routerLink]="['login']">login</a> </li>
+            <li *ngIf='!isLoggedApp'><a herf='#' [routerLink]="['login']">login</a> </li>
+            <li *ngIf='isLoggedApp'><span class='logOut' (click)="logOut()">logout</span> </li>
         </ul>
     </nav>
 </header>
 <router-outlet></router-outlet>
-

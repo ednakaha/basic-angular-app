@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { LoginComponent } from '../login/login.component';
-import { throwError, of, Observable } from 'rxjs';
+import { throwError, of, Observable, BehaviorSubject } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { map } from 'rxjs/operators';
 
@@ -9,12 +9,18 @@ import { map } from 'rxjs/operators';
 })
 export class AuthService {
 
-  constructor() { }
+  private _isLogged: BehaviorSubject<boolean>;
+
+  constructor() {
+    this._isLogged = new BehaviorSubject<boolean>(false);
+
+  }
   Login(email: string, password: string): Observable<string> {
     if (email === 'a@a.com' && password === 'aaa') {
       return of('abcdefgh').pipe(
         map(res => {
           this.setToken(res);
+          this._isLogged.next(true);
           return res;
         })
       );
@@ -31,8 +37,18 @@ export class AuthService {
     return window.localStorage.getItem(environment.tokenKey)
   }
 
-   isLogged(): Observable<boolean> {
-    return of(this.getToken() != null);
+  logOut() {
+    this._isLogged.next(false);
+    this.deleteToken();
+  }
+
+  private deleteToken() {
+    window.localStorage.removeItem(environment.tokenKey);
+  }
+
+  isLogged(): Observable<boolean> {
+    return this._isLogged;
+    // return of(this.getToken() != null);
   }
 
 }
