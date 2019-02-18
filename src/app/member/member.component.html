@@ -1,1 +1,6 @@
-{{this.memberDataCom | json }}
+<div *ngIf='memberDataCom'>
+ 
+  <p> "id": {{this.memberDataCom.id}}</p>
+  <p> "totalProduct": {{this.memberDataCom.totalProduct }}</p>
+  <p> "badget": {{this.memberDataCom.badget | currency}}</p>
+</div>
