@@ -1,4 +1,5 @@
 export const environment = {
   production: true,
-  tokenKey:'token'
+  tokenKey:'token',
+  servelUrl: 'http://localhost:3000/'
 };

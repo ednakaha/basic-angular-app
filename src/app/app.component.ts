@@ -16,8 +16,8 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.autoService.isLogged().subscribe(suc => {
-      this.isLoggedApp = suc;
+    this.autoService.isLogged().subscribe(loginSucc => {
+      this.isLoggedApp = loginSucc;
     })
   }
 

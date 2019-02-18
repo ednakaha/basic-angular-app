@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MemberService } from '../services/member.service';
 
 @Component({
   selector: 'app-member',
@@ -6,10 +7,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./member.component.css']
 })
 export class MemberComponent implements OnInit {
+  memberDataCom;
 
-  constructor() { }
+  constructor(private memberService: MemberService) { }
 
   ngOnInit() {
-  }
 
+    this.memberService.memberDate().subscribe(memberDataRes => {
+      this.memberDataCom = memberDataRes;
+    })
+  }
 }
